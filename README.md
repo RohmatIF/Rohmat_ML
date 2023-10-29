@@ -118,6 +118,45 @@ sns.heatmap(df.isnull())
 out :
 ```
 ![image](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/b7208d42-826d-4035-873d-b01437dc54a6)
+Data di atas terlihat aman 
+
+Selanjutnya kita akan melihat gambaran visual tentang sejauh mana variable dalam DataFrame ini berkorelasi, kiata bisa menggunakan Heatmap untuk dapat melihatnya.
+```bash
+plt.figure(figsize=(24,10))
+sns.heatmap(df.corr(),annot=True)
+```
+```bash
+out :
+```
+![image](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/b27e8a71-4d19-4f53-b5c7-1ed3eb55ff5a)
+
+Kita juga dapat menganalisis variabel-variabel yang saling berhubungan, contohnya disini kita akan memaparkan beberapa subplot seperti Battery,RAM,Front_Camera dan Price_Range, kita akan mencoba Price_Range sebagai variabel independen dan bagaimana hubungannya dengan variable-variable lain.
+```bash
+plt.figure(figsize = (16,4))
+plt.subplot(1,4,1)
+sns.barplot(x = 'Price_Range', y = 'Battery', data = df, palette = 'Blues')
+plt.subplot(1,4,2)
+sns.barplot(x = 'Price_Range', y = 'RAM',data = df, palette = 'Blues')
+plt.subplot(1,4,3)
+sns.barplot(x = 'Price_Range', y = 'Front_Camera', data = df, palette = 'Blues')
+plt.show()
+```
+```bash
+out :
+```
+![image](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/ab889eaa-a066-47d0-a210-030216e8547c)
+Hal ini dapat membantu memahami bagaimana spesifikasi perangkat berubah atau berkorelasi dengan harga yang berbeda berdasarkan Price_Range
+
+Selanjutnya kita juga dapat
+```bash
+out :
+```
+```bash
+out :
+```
+
+
+
 
 
 
