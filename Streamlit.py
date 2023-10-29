@@ -30,6 +30,7 @@ if brand_mode:
 else:
     BrandCategory = st.selectbox('Pilih kategori Brand', list(brand_options.keys()))
 
+# Dropdown untuk ProcessorCategory
 processor_options = {
     0: "Apple",
     1: "Exynos",
@@ -40,18 +41,16 @@ processor_options = {
     6: "Unisoc"
 }
 
-processor_mode = st.checkbox("Pilih Kategori Processor Berdasarkan Nama", value=False)
+processor_mode = st.checkbox("Pilih Processor Berdasarkan Nama", value=False)
 
 if processor_mode:
     ProcessorCategory = st.selectbox('Inputkan', list(processor_options.values()))
 else:
     ProcessorCategory = st.selectbox('Inputkan', list(processor_options.keys()))
 
-# Dropdown untuk RAM
 ram_options = [1, 2, 3, 4, 6, 8, 12, 16, 18]
 RAM = st.selectbox('Pilih RAM', ram_options)
 
-# Dropdown untuk ROM
 rom_options = [2, 8, 12, 16, 25, 32, 64, 128, 256, 512, 1024]
 ROM = st.selectbox('Pilih ROM', rom_options)
 
@@ -63,6 +62,8 @@ Back_Camera = st.number_input('Input spesifikasi kamera belakang (Mega Px)')
 predict = ''
 
 if st.button('Estimasi Harga'):
+    if brand_mode:
+        BrandCategory = [key for key, value in brand_options.items() if value == BrandCategory][0]
     if processor_mode:
         processor_category = [key for key, value in processor_options.items() if value == ProcessorCategory][0]
     else:
@@ -70,5 +71,5 @@ if st.button('Estimasi Harga'):
     predict = model.predict(
         [[BrandCategory, processor_category, RAM, ROM, Battery, Diplay_Size, Back_Camera, Front_Camera]]
     )
-    st.write('Estimasi harga mobile Phone 2023 dalam Ponds:', predict)
-    st.write('Estimasi harga mobile Phone 2023 IDR (Juta):', predict * 19000)
+    st.write('Estimasi harga smartphone 2023 dalam Ponds:', predict)
+    st.write('Estimasi harga smartphone 2023 IDR (Juta):', predict * 19000)
