@@ -116,7 +116,7 @@ sns.heatmap(df.isnull())
 ```
 out :
 ```bash
-<img width="338" alt=(https://github.com/RohmatIF/Rohmat_ML/assets/147891420/936f2370-efb1-461f-aa6c-90bf1768081e)
+![A Datasets 1](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/5819d226-6418-4985-acbc-dea1a43bed0a)
 ```
 
 
