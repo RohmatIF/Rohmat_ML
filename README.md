@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning
+# Machine Learning
 ### Nama  : Rohmat
 ### NIM   : 211351131
 ### Kelas : TIF Pagi B
@@ -6,7 +6,7 @@
 
 
 ## Domain Proyek
-Dapat dilihat bahwa Smartphone telah menjadi bagian integral dari kehidupan sehari-hari banyaknya individu, Selain menjadi alat komunikasi, tetapi juga sebagai alat produktivitas,Hiburan,Pengelolaan Keuangan, dan berbagai aktivitas lainnya. Namun masih banyak juga orang yang belum mengetahui pasti harga dari smartphone sesuai spesifikasi yang di inginkan jadi jika ingin mengetahuinya harus pergi ke tempat penjual smartphone tersebut untuk menanyakan harga sesuai spesifikasi yang di inginkan, Oleh karena itu saya membuat sebuat proyek yang akan mengestimasi harga dari smartphone tersebut mulai dari  Jenis Brand, jenis processor,RAM,ROM dan lainnya.
+Memprediksi harga smartphone sesuai spesifikasi yang di inginkan adalah hal yang ingin saya buat dalam proyek ini, karena smartphone sudah menjadi bagian penting dalam kehidupan sehari-hari banyak orang, dan mereka digunakan untuk berbagai tujuan, termasuk komunikasi, hiburan, pekerjaan, dan produktivitas.
 
 ## Business Understanding
 Proyek ini memudahkan, menghemat waktu dan tenaga kita, karena dapat mengestimasi harga dari smartphone yang sesuai dengan spesifikasi yang kita inginkan, kita dapat memperkirakan harga dari sebuah smartphone tanpa harus pergi dan bertanya ke penjualnya terlebih dahulu
@@ -118,9 +118,10 @@ sns.heatmap(df.isnull())
 out :
 ```
 ![image](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/b7208d42-826d-4035-873d-b01437dc54a6)
+
 Data di atas terlihat aman 
 
-Selanjutnya kita akan melihat gambaran visual tentang sejauh mana variable dalam DataFrame ini berkorelasi, kiata bisa menggunakan Heatmap untuk dapat melihatnya.
+Selanjutnya kita akan melihat gambaran visual tentang sejauh mana variable dalam DataFrame ini berkorelasi, kita bisa menggunakan Heatmap untuk dapat melihatnya.
 ```bash
 plt.figure(figsize=(24,10))
 sns.heatmap(df.corr(),annot=True)
@@ -147,18 +148,86 @@ out :
 ![image](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/ab889eaa-a066-47d0-a210-030216e8547c)
 Hal ini dapat membantu memahami bagaimana spesifikasi perangkat berubah atau berkorelasi dengan harga yang berbeda berdasarkan Price_Range
 
-Selanjutnya kita juga dapat
+Selanjutnya kita juga dapat memvisualisasikan data, tentang seberapa banyak smartphone yang memiliki kapasitas penyimpanan tertentu, dan mana yang paling banyak.
 ```bash
-out :
+plt.figure(figsize=(10,5))
+sns.countplot(x = df['ROM'])
+plt.xticks(rotation = 90)
+plt.title("ROM (in GB)")
+plt.tight_layout()
 ```
 ```bash
 out :
 ```
+![image](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/649a6cab-01be-4301-b469-b2f6db5c049a)
+Nah Hasil ini dapat membantu kita dalam memahami distribusi kapasitas penyimpanan (ROM) dalam dataset
 
 
+### Modeling
+Sekarang kita akan melakukan modeling, Hal pertama yang akan kita lakukan yaitu menginport liblary yang akan kita gunakan
+```bash
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+```
+ Setelah itu kita akan menyeleksi fitur yang ada di dalam datasets dan apa saja yang akan digunakan.
+ Disini saya menjadikan Price sebagai target nya (y) dan fitur lain sebagai (x) nya.
+ ```bash
+features = ['BrandCategory','ProcessorCategory','RAM','ROM','Battery','Diplay_Size','Back_Camera','Front_Camera']
+x = df[features]
+y = df['Price']
+x.shape, y.shape
+```
+Langkah berikutnya kita akan melakukan split data seperti di bawah ini :
+ ```bash
+x_train, X_test, y_train, y_test = train_test_split(x, y, random_state=70)
+```
+Setelah melakukan split data selanjutnya kita bisa memasukan data training dan testing kedalam sebuah model regresi linier, seperti di bawah ini:
+```bash
+lr = LinearRegression()
+lr.fit(x_train,y_train)
+pred = lr.predict(X_test)
+```
+Lalu kita bisa melihat akurasi datanya
+```bash
+score = lr.score(X_test, y_test)
+print('akurasi model regresi linear =', score)
+```
+```bash
+Out : akurasi model regresi linear = 0.7466557871908398
+```
+Nilai akurasi yang di dapatkan adalah 74% , ini sudah cukup bagus untuk di jadikan sebuah data estimasi
 
+Selanjutnya kita bisa mencoba untuk menginputkan sebuat data
+```bash
+#'BrandCategory','ProcessorCategory','RAM','ROM','Battery','Diplay_Size','Back_Camera','Front_Camera'
+input_data = np.array([[10,5,4,64,4100,550,13,5]])
 
+prediction = lr.predict(input_data)
+print('Estimasi harga smartphone dalam EUR :', prediction)
+```
+```bash
+Out : Estimasi harga smartphone dalam EUR : [9621521.79284554]
+```
+Alhamdulillah berhasil 
 
+### Evalution
+R-squared (R2) menjadi pilihan saya karena dikenal sebagai koefisien determinasi, lalu R-squared (R2) adalah ukuran statistik yang digunakan dalam analisis regresi untuk mengukur sejauh mana model regresi cocok dengan data observasi.
+```bash
+from sklearn.metrics import r2_score
+score = r2_score(y_test, pred)
+
+print(f"precision = {score}")
+```
+```bash
+out : precision = 0.7466557871908398
+```
+Scor yang di dapat 74%, maka dapat dinyatakan bahwa variable dependen dan variable independen berkorelasi.
+
+### Deployment
+
+[Link Untuk Memasuki Streamlit](https://rohmatml-tifutspagibml.streamlit.app/)
+
+![image](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/7fd600bc-86e2-42c0-84fa-ad7fd2a2cade)
 
 
 
