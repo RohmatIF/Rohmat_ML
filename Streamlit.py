@@ -4,8 +4,31 @@ import streamlit as st
 model = pickle.load(open('estimasi_Mobile_2023.sav', 'rb'))
 
 st.title('Estimasi Harga smartphone 2023')
+st.markdown('---')
 
-BrandCategory = st.selectbox('Pilih kategori Brand', list(range(1, 14)))
+brand_options = {
+    0: "Apple",
+    1: "Asus",
+    2: "Google",
+    3: "Infinix",
+    4: "Xiomi",
+    5: "Motorola",
+    6: "OnePlus",
+    7: "OPPO",
+    8: "POCO",
+    9: "Realme",
+    10: "Redmi",
+    11: "SAMSUNG",
+    12: "Tecno",
+    13: "vivo"
+}
+
+brand_mode = st.checkbox("Pilih Brand Berdasarkan Nama", value=False)
+
+if brand_mode:
+    BrandCategory = st.selectbox('Pilih kategori Brand', list(brand_options.values()))
+else:
+    BrandCategory = st.selectbox('Pilih kategori Brand', list(brand_options.keys()))
 
 processor_options = {
     0: "Apple",
