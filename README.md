@@ -45,13 +45,81 @@ Dataset yang diganakan adalah dataset Mobile Price 2023 yang di ambil dari kaggl
 
 ## Data Preperation
 
-Menghubungkan dengan Kaggle lalu input Datasets dari kaggle
+### Menghubungkan dengan Kaggle lalu input Datasets dari kaggle
 
-Pertama kita harus terhubung dulu dengan kaggle, dengan cara mendownload Token dari kaggle terlebih dahulu, setelah mendapatkan token kita bisa langsung memasukan peritah di bawah ini dan masukan token yang sudah di download 
+Pertama kita harus terhubung dulu dengan kaggle, dengan cara mendownload Token dari kaggle terlebih dahulu, setelah mendapatkan token kita bisa langsung memasukan peritah di bawah ini dan masukan token yang sudah di download.
 ```bash
 from google.colab import files
 files.upload()
 ```
+Langkah selanjutnya adalah membuat direktori
+```bash
+!mkdir -p ~/.kaggle
+!cp kaggle.json ~/.kaggle/
+!chmod 600 ~/.kaggle/kaggle.json
+!ls ~/.kaggle
+```
+Setelah direktori di buat kita bisa langsung memanggil url dataset dari kaggle tersebut dengan cara mengcopy API command nya
+```bash
+! kaggle datasets download -d krishnendujana2/mobile-price
+```
+Setelah dataset nya berhasil terpanggil kita harus meng ekstrak dataset tersebut dengan cara memasukan perintah seperti berikut ini :
+```bash
+! mkdir mobile-price
+! unzip mobile-price.zip -d mobile-price
+! ls mobile-phone-specifications-and-prices
+```
+Setelah berhasil terhubung dengan kaggle dan dataset kita sudah bisa mulai untuk melakukan reading data
+
+### Membaca data
+Pertama kita bisa mengimport liblary yang akan kita gunakan terlebih dahulu
+```bash
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+Lalu kita bisa memanggil dataset yang sudah kita download dan ekstrak di atas agar bisa kita baca datanya, adalah sebagai berikut :
+```bash
+df = pd.read_csv('/content/mobile-price/mobilepricedata.csv')
+```
+Setelah kita panggil kita dapat melakukan beberapa exploratory data analysis sederhana, Kita bisa mulai dari menampilkan dataset dan melihat jumlah kolom nya, lalu mengecek type data dan lainnya
+```bash
+df.head()
+```
+```bash
+df.info()
+```
+```bash
+df.describe
+```
+Kita juga bisa mencoba untuk menghapus kolom 'Name', 'Brand_Name', 'Processor', dan 'Price_Range' dari dataset, dan menyimpan fitur-fitur yang tersisa dalam variabel x. dan membuat Kolom 'Price_Range' sebagai target. Itu dilakukan agar kita dapat memisahkan variabel-variabel yang akan digunakan sebagai fitur atau faktor-faktor dalam analisis atau pemodelan dari variabel yang ingin kita prediksi.
+```bash
+x =df.drop(['Name','Brand_Name','Processor','Price_Range'],axis = 1)
+y = df.Price_Range
+x.head(5)
+```
+```bash
+x.info()
+```
+Kita juga bisa mengecek apakah terdapat duplicate data di dalam dataset kita
+```bash
+df[df.duplicated()]
+```
+Setelah kita melakukan reading data kita bisa melanjutkan ke langkah selanjutnya yaitu visualisasi data
+
+### Visualisasi Data
+
+Pertama kita bisa cek heatmap dari datasets yang kita gunakan, apakah terdapat data yang kosong atau tidak, kita bisa gunakan perintah ini untuk mengecek nya :
+```bash
+sns.heatmap(df.isnull())
+```
+out :
+```bash
+<img width="338" alt=(https://github.com/RohmatIF/Rohmat_ML/assets/147891420/936f2370-efb1-461f-aa6c-90bf1768081e)
+```
+
+
 
 
 
