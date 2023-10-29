@@ -225,7 +225,7 @@ Scor yang di dapat 74%, maka dapat dinyatakan bahwa variable dependen dan variab
 
 ### Deployment
 
-[Link Untuk Memasuki Streamlit](https://rohmatml-tifutspagibml.streamlit.app/)
+[Link Untuk Memasuki Streamlit](https://rohmatml-utstifpagib2023.streamlit.app/)
 
 ![image](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/7fd600bc-86e2-42c0-84fa-ad7fd2a2cade)
 
