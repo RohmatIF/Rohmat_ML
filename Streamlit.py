@@ -71,5 +71,4 @@ if st.button('Estimasi Harga'):
     predict = model.predict(
         [[BrandCategory, processor_category, RAM, ROM, Battery, Diplay_Size, Back_Camera, Front_Camera]]
     )
-    st.write('Estimasi harga smartphone 2023 dalam Ponds:', predict)
-    st.write('Estimasi harga smartphone 2023 IDR (Juta):', predict * 19000)
+    st.write('Prediksi Harga Laptop (Rupiah): ', predict*1)
