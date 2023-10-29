@@ -25,7 +25,7 @@ Dataset yang diganakan adalah dataset Mobile Price 2023 yang di ambil dari kaggl
 
 [Mobile Price Data 2023](https://www.kaggle.com/datasets/krishnendujana2/mobile-price).
 
-### Variable-variable pada Dataset Mobile Price Data 2023 adalah sebagai berikut
+### Variable-variable pada Dataset Mobile Price Data 2023 adalah sebagai berikut :
  - Name : Merupakan Nama Dari Jenis atau type smartphone (Type data : Object) 
  - Brand_Name : Merupakan Merek Smartphone (Type data : Object)
  - Processor : Merupakan nama dari Processor smartphone yang digunakan (Type data : Object) 
@@ -45,7 +45,20 @@ Dataset yang diganakan adalah dataset Mobile Price 2023 yang di ambil dari kaggl
 
 ## Data Preperation
 
-Hubungkan dengan Kaggle lalu input Datasets dari kaggle
+Menghubungkan dengan Kaggle lalu input Datasets dari kaggle
+
+Pertama kita harus terhubung dulu dengan kaggle, dengan cara mendownload Token dari kaggle terlebih dahulu, setelah mendapatkan token kita bisa langsung memasukan peritah di bawah ini dan masukan token yang sudah di download 
+```bash
+from google.colab import files
+files.upload()
+```
+
+
+
+
+
+
+
 
 
 
