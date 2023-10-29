@@ -114,10 +114,10 @@ Pertama kita bisa cek heatmap dari datasets yang kita gunakan, apakah terdapat d
 ```bash
 sns.heatmap(df.isnull())
 ```
-out :
 ```bash
-![A Datasets 1](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/5819d226-6418-4985-acbc-dea1a43bed0a)
+out :
 ```
+![image](https://github.com/RohmatIF/Rohmat_ML/assets/147891420/b7208d42-826d-4035-873d-b01437dc54a6)
 
 
 
