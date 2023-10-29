@@ -30,7 +30,6 @@ if brand_mode:
 else:
     BrandCategory = st.selectbox('Pilih kategori Brand', list(brand_options.keys()))
 
-# Dropdown untuk ProcessorCategory
 processor_options = {
     0: "Apple",
     1: "Exynos",
@@ -48,11 +47,13 @@ if processor_mode:
 else:
     ProcessorCategory = st.selectbox('Inputkan', list(processor_options.keys()))
 
+# Dropdown untuk RAM
 ram_options = [1, 2, 3, 4, 6, 8, 12, 16, 18]
-RAM = st.selectbox('Pilih RAM', ram_options)
+RAM = st.selectbox('Pilih RAM (In GB)', ram_options)
 
+# Dropdown untuk ROM
 rom_options = [2, 8, 12, 16, 25, 32, 64, 128, 256, 512, 1024]
-ROM = st.selectbox('Pilih ROM', rom_options)
+ROM = st.selectbox('Pilih ROM (In GB)', rom_options)
 
 Battery = st.number_input('Input Kapasitas Batrai (mAh)')
 Diplay_Size = st.number_input('Input Ukuran layar')
