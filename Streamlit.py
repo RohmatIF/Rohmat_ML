@@ -17,7 +17,7 @@ processor_options = {
     6: "Unisoc"
 }
 
-processor_mode = st.checkbox("Pilih Kategori Berdasarkan Nama", value=False)
+processor_mode = st.checkbox("Pilih Kategori Processor Berdasarkan Nama", value=False)
 
 if processor_mode:
     ProcessorCategory = st.selectbox('Inputkan', list(processor_options.values()))
