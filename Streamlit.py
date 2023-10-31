@@ -55,10 +55,10 @@ RAM = st.selectbox('Pilih RAM (In GB)', ram_options)
 rom_options = [2, 8, 12, 16, 25, 32, 64, 128, 256, 512, 1024]
 ROM = st.selectbox('Pilih ROM (In GB)', rom_options)
 
-Battery = st.number_input('Input Kapasitas Batrai (mAh)')
-Diplay_Size = st.number_input('Input Ukuran layar')
-Front_Camera = st.number_input('Input spesifikasi kamera depan (Mega Px)')
-Back_Camera = st.number_input('Input spesifikasi kamera belakang (Mega Px)')
+Battery = st.selectbox('Input Kapasitas Batrai mAh', ('3000', '3500', '4000', '4500', '5000'))
+Diplay_Size = st.slider('Input Ukuran layar', 200, 600, 50)
+Front_Camera = st.slider('Input spesifikasi kamera depan Mega Px', 5, 100, 5)
+Back_Camera = st.slider('Input spesifikasi kamera belakang Mega Px', 5, 100, 5)
 
 predict = ''
 
@@ -70,6 +70,6 @@ if st.button('Estimasi Harga'):
     else:
         processor_category = ProcessorCategory
     predict = model.predict(
-        [[BrandCategory, processor_category, RAM, ROM, Battery, Diplay_Size, Back_Camera, Front_Camera]]
+        [[float(BrandCategory), float(processor_category), float(RAM), float(ROM), float(Battery), float(Diplay_Size), float(Back_Camera), float(Front_Camera)]]
     )
     st.write('Prediksi Harga Smartphone (Rupiah): ', predict*1)
